@@ -2,46 +2,14 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "20.0.0"
 
-  cluster_name    = "test-eks"
-  cluster_version = "1.28"
-
-  cluster_endpoint_private_access = true
-  cluster_endpoint_public_access  = true
-
-  vpc_id     = module.vpc.vpc_id
-  subnet_ids = module.vpc.private_subnets
-
-  enable_irsa = true
-
-  cluster_addons = {
-    coredns = {
-      most_recent = true
-    }
-    kube-proxy = {
-      most_recent = true
-    }
-    vpc-cni = {
-      most_recent = true
-    }
-  }
-
-  eks_managed_node_group_defaults = {
-    disk_size = 50
-  }
-
-  eks_managed_node_groups = {
-    nodes = {
-      desired_size = 2
-      min_size     = 2
-      max_size     = 4
-
-      labels = {
-        role = "nodes"
-      }
-
-      instance_types = ["m6a.large"]
-      capacity_type  = "ON_DEMAND"
-
-    }
-  }
+  cluster_name                      = var.eks_cluster_name
+  cluster_version                   = var.eks_cluster_version
+  cluster_endpoint_private_access   = var.eks_private_endpoint_access
+  cluster_endpoint_public_access    = var.eks_public_endpoint_access
+  vpc_id                            = module.vpc.vpc_id
+  subnet_ids                        = module.vpc.private_subnets
+  enable_irsa                       = var.eks_enable_irsa
+  cluster_addons                    = var.eks_cluster_addons
+  eks_managed_node_group_defaults   = var.eks_managed_node_group_defaults
+  eks_managed_node_groups           = var.eks_managed_node_groups
 }
