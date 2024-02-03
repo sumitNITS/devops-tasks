@@ -22,7 +22,9 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: Build the Docker Image
-      run: docker build . --file app/Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/simpletimeservice:${{ github.run_number }}
+      run: |
+          cd app
+          docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/simpletimeservice:${{ github.run_number }}
 
     - name: Push Docker Image
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/simpletimeservice:${{ github.run_number }}
