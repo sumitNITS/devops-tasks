@@ -13,7 +13,7 @@ This repository has two parts, The First part has a small containerized applicat
 ```json
 {
   "ip": "<the IP address of the visitor>",
-  "timestamp": "<current date and time>"
+  "timestamp": "<current date and time in UTC>"
 }
 ```
 - Created a Dockerfile for this microservice.
@@ -28,6 +28,11 @@ To deploy the manifests to a running Kubernetes cluster and use the microservice
 
 ```sh
 kubectl apply -f simpletimeservice.yml
+```
+You can access the application by running the command below:
+
+```sh
+curl <NodeIPAddress:NodePort>
 ```
 
 ## Part 2
