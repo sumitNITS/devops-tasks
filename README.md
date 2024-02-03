@@ -57,4 +57,10 @@ terraform apply
 
 After some time the infrastructure will get deployed into your AWS environment. You can verify them by going inside your AWS account.
 
-Thanks, for reading so far! 
+## Additional Actions
+
+- Updated additional lines in Kubernetes manifest to utilize best practices e.g. pod CPU and memory limits. (Kept as a Comment in manifest)
+- Added a sidecar container (fluentbit) in the Kubernetes manifest to collect and forward logs from the main application container. (Kept as a Comment in manifest)
+- Created a simple CI/CD pipeline using GitHub Actions to publish the container image with the build number as a tag to the container registry, and commit the configuration to our solution repository. (Pipeline definition file is inside .github/workflows/cicd.yml)
+
+Thanks you so much for reading so far 🙏 
