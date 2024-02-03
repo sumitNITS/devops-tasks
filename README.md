@@ -46,7 +46,7 @@ Using Terraform, I have created the following infrastructure in AWS:
 
 To work with these terraform files, you need to have AWS CLI installed on your machine and you need to get the CLI Access Keys from your AWS account User. Then you have to configure AWS from your terminal using the command "aws configure" and after providing the access keys, secret keys, region name, and output format you are ready to work with AWS using these terraform templates present inside the terraform folder.
 
-To work with these terraform templates save the terraform folder in your machine and cd into it and run the commands below:
+To work with these terraform templates save the terraform folder in your machine, cd into it and run the commands below:
 
 ```sh
 terraform init
@@ -64,8 +64,8 @@ After some time the infrastructure will get deployed into your AWS environment. 
 
 ## Additional Actions
 
-- Updated additional lines in Kubernetes manifest to utilize best practices e.g. pod CPU and memory limits. (Kept as a Comment in manifest)
-- Added a sidecar container (fluentbit) in the Kubernetes manifest to collect and forward logs from the main application container. (Kept as a Comment in manifest)
+- Updated additional lines in Kubernetes manifest to utilize best practices e.g. pod CPU and memory limits. (Kept as a Comment in the manifest)
+- Added a sidecar container (fluentbit) in the Kubernetes manifest to collect and forward logs from the main application container. (Kept as a Comment in the manifest)
 - Created a simple CI/CD pipeline using GitHub Actions to publish the container image with the build number as a tag to the container registry, and commit the configuration to our solution repository. (Pipeline definition file is inside .github/workflows/cicd.yml)
 
-Thanks you so much for reading so far 🙏 
+Thank you so much for reading up to this point.
