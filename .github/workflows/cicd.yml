@@ -1,4 +1,4 @@
-# Simple CI/CD pipeline using GitHub Actions to publish container image to DockerHub, and commit the configuration to solution repo
+# Simple CI/CD pipeline using GitHub Actions to publish container image to DockerHub, and commit the configuration to solution repository.
 
 name: CI/CD Pipeline
 
@@ -26,5 +26,3 @@ jobs:
 
     - name: Push Docker Image
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/simpletimeservice:${{ github.run_number }}
-
-
