@@ -1,11 +1,11 @@
-# Use an official Python runtime as a parent image
+# Python runtime as a parent image
 FROM python:3.8-slim
 
-# Set environment variables
+# Environment variables
 ENV APP_HOME /app
 ENV USER nonrootuser
 
-# Create a non-root user and set its home directory
+# Create a non-root user and set it's home directory
 RUN useradd -m -d $APP_HOME $USER
 
 # Set the working directory to /app
@@ -26,5 +26,5 @@ USER $USER
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
 
-# Run app.py when the container launches
+# Run simpletimeservice.py when the container launches
 CMD ["python", "simpletimeservice.py"]
