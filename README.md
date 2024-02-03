@@ -1,6 +1,6 @@
 ## DevOps-Team-Tasks
 
-This repository has two parts, one part has a small containerized application in it, also has the Kubernetes manifest for it. The second part has a terraform module to deploy a VPC + EKS cluster in a private subnet.
+This repository has two parts, The First part has a small containerized application in it, also has the Kubernetes manifest for it. The second part has a terraform module to deploy a VPC + EKS cluster in a private subnet.
 
 ## Part 1
 
@@ -16,17 +16,45 @@ This repository has two parts, one part has a small containerized application in
   "timestamp": "<current date and time>"
 }
 ```
-- Created a Dockerfile for this microservice
-- The application is configured to run as a non-root user in the container
-- Published the image to DockerHub so that it can be pulled by anyone for testing
-- Created a Kubernetes manifest in YAML format, containing a Deployment and a Service, to deploy the microservice on Kubernetes
-- The Deployment is using public Docker image from DockerHub
+- Created a Dockerfile for this microservice.
+- The application is configured to run as a non-root user in the container.
+- Published the image to DockerHub so that it can be pulled by anyone for testing.
+- Created a Kubernetes manifest in YAML format, containing a Deployment and a Service, to deploy the microservice on Kubernetes.
+- The Deployment is using public Docker image from DockerHub.
 - I have used NodePort as a service for testing (If I don't mention it as NodePort it will serve as a ClusterIP service type, by default!)
 
 
-To deploy the manifests to a running Kubernetes cluster and use the microservice, save the file "simpletimeservice.yml" into the current directory you are currently present and run the below command:
+To deploy the manifests to a running Kubernetes cluster and use the microservice, save the file "simpletimeservice.yml" (It is inside the app folder of this repository) into your current working directory and run the below command:
 
 ```sh
 kubectl apply -f simpletimeservice.yml
 ```
 
+## Part 2
+
+Using Terraform, I have created the following infrastructure in AWS:
+
+- A VPC with 2 public and 2 private subnets.
+- An EKS cluster deployed to that VPC.
+- The cluster with 2 nodes, using instance type `m6a.large`.
+- The nodes are residing in private subnets.
+
+To work with these terraform files, you need to have AWS CLI installed on your machine and you need to get the CLI Access Keys from your AWS account User. Then you have to configure AWS from your terminal using the command "aws configure" and after providing the access keys, secret keys, region name, and output format you are ready to work with AWS using these terraform templates present inside the terraform folder.
+
+To work with these terraform templates save the terraform folder in your machine and cd into it and run the commands below:
+
+```sh
+terraform init
+```
+
+```sh
+terraform plan
+```
+
+```sh
+terraform apply
+```
+
+After some time the infrastructure will get deployed into your AWS environment. You can verify them by going inside your AWS account.
+
+Thanks, for reading so far! 
